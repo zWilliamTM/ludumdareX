@@ -20,6 +20,8 @@ namespace state
 		MENU,
 		GAME,
 		PAUSE,
+
+		TESTING,
 	};
 
 	class StateManager

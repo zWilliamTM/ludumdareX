@@ -5,6 +5,7 @@
 #include "loading.h"
 #include "menu.h"
 #include "game.h"
+#include "testing.h"
 
 using namespace graphics;
 using namespace input;
@@ -38,6 +39,7 @@ namespace state
 			case MENU: { current = new Menu(); } break;
 			case GAME: { current = new Game(); } break;
 			case PAUSE: {} break;
+			case TESTING: { current = new Testing(); } break;
 		}
 		curr_state = state;
 		load_state(current);

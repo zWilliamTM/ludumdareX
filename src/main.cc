@@ -19,8 +19,9 @@ int main()
 	using namespace input;
 	using namespace state;
 
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
 		std::cout << SDL_GetError() << std::endl;
+	IMG_Init(IMG_INIT_PNG);
 
 	SDL_Window *w = 
 		SDL_CreateWindow("Ld",
@@ -42,7 +43,7 @@ int main()
 
 	Screen s(sw, sh);
 	Keyboard kb;
-	StateManager sm(StateID::LOADING);
+	StateManager sm(StateID::TESTING);
 
 	bool run = true;
 	auto [_x,_y] = std::tuple(0,0);
