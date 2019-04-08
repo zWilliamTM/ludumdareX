@@ -9,7 +9,7 @@ namespace graphics
 	class SpriteSheet
 	{
 	public:
-		SpriteSheet(const std::string& path, int size);
+		SpriteSheet(const std::string& path, int width, int height);
 		~SpriteSheet();
 
 	private:

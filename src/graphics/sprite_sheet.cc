@@ -1,13 +1,13 @@
 #include "sprite_sheet.h"
 
-#include <SDL_.h>
+#include <SDL.h>
 #include <SDL_image.h>
 
 #include "helper_sdl.h"
 
 #include <stdexcept>
+#include <exception>
 
-using namespace helper;
 namespace graphics
 {
 	SpriteSheet::SpriteSheet(const std::string& path, int width, int height)
@@ -29,14 +29,14 @@ namespace graphics
 	{
 		try
 		{
-			int *buffer = _get_data_png(path.c_str(), width, height);
+			int *buffer = helper::_get_data_png(path.c_str(), width, height);
 			for (int y=0; y<height; ++y)
 				for (int x=0; x<width; ++x)
 					pixels[x + y * width] = buffer[x + y * width];
 		}
 		catch (std::exception& e)
 		{
-			std::runtime_error(e.what());
+			// TODO.
 		}
 		
 	}
