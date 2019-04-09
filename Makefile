@@ -5,13 +5,15 @@ MAIN=src/*.cc \
 	 src/graphics/*.cc \
 	 src/input/*.cc \
 	 src/state/*.cc \
-	 src/utils/*.cc
+	 src/utils/*.cc \
+	 src/event/*.cc
 
 INC= -I src \
 	 -I src/graphics \
 	 -I src/input \
 	 -I src/state \
-	 -I src/utils
+	 -I src/utils \
+	 -I src/event
 
 PROJECT=ld
 
