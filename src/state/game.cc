@@ -1,6 +1,8 @@
 #include "game.h"
 #include "screen.h"
 
+#include "keyboard.h"
+
 using namespace graphics;
 namespace state
 {
@@ -20,7 +22,7 @@ namespace state
 	{
 	}
 
-	void Game::handleEvent(SDL_Keycode e)
+	void Game::handleEvent(InputListener *il)
 	{
 	}
 

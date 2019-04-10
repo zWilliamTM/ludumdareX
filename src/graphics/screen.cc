@@ -1,4 +1,5 @@
 #include "screen.h"
+#include "sprite_sheet.h"
 
 namespace graphics
 {
@@ -23,6 +24,27 @@ namespace graphics
 			for (int x=0; x<width; ++x)
 			{
 				pixels[x + y * width] = spixels[x + y * width];
+			}
+		}
+	}
+
+	void Screen::render(SpriteSheet *sheet, int xp, int yp, bool fixed)
+	{
+		if (fixed) { xp -= xOffset; yp -= yOffset; }
+
+		int w_s = sheet->getWidth();
+		int h_s = sheet->getHeight();
+		int *px = sheet->pixels;
+
+		for (int y=0; y<h_s; ++y)
+		{
+			int yo = yp + y;
+			if (yo < 0 || yo > height) continue;
+			for (int x=0; x<w_s; ++x)
+			{
+				int xo = xp + x;
+				if (xo < 0 || xo > width) continue;
+				pixels[xo + yo * width] = px[x + y * w_s];
 			}
 		}
 	}

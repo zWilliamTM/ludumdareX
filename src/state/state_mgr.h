@@ -5,7 +5,7 @@
 // Forward
 namespace graphics { class Screen; }
 using namespace graphics;
-namespace input { class Keyboard; }
+namespace input { class InputListener; }
 using namespace input;
 
 namespace state
@@ -30,7 +30,7 @@ namespace state
 		StateManager(StateID state);
 		~StateManager();
 
-		void handleEvent(Keyboard *kb);
+		void handleEvent(InputListener *il);
 		void update(float dt);
 		void change(StateID state);
 		void render(Screen *screen);

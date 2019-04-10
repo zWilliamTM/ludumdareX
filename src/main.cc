@@ -3,6 +3,7 @@
 #include <iostream>
 #include <tuple>
 #include <unordered_map>
+#include <memory>
 
 #include "screen.h"
 #include "keyboard.h"
@@ -43,7 +44,8 @@ int main()
 			SDL_TEXTUREACCESS_STREAMING, sw, sh);
 
 	Screen s(sw, sh);
-	Keyboard kb;
+	std::unique_ptr<Keyboard> kb(new Keyboard());
+	sm.handleEvent(kb.get());
 	StateManager sm(StateID::TESTING);
 
 	bool run = true;
@@ -55,16 +57,13 @@ int main()
 			switch (e.type)
 			{
 				case SDL_QUIT: 		run = false; 						break;
-				case SDL_KEYDOWN: 	kb.keyPressed(e.key.keysym.sym); 	break;
-				case SDL_KEYUP: 	kb.keyReleased(e.key.keysym.sym); 	break;
+				case SDL_KEYDOWN: 	kb->keyPressed(e.key.keysym.sym); 	break;
+				case SDL_KEYUP: 	kb->keyReleased(e.key.keysym.sym); 	break;
 			}
 		}
 
 		// update
-		kb.update();
-
-		// handle events
-		sm.handleEvent(&kb);
+		kb->update();
 		
 		// update
 		sm.update(0.f);

@@ -48,7 +48,7 @@ namespace graphics
 	{
 		std::size_t xxx = width * height;
 		pixels = new int[xxx];
-		for (int i=0; i<xxx; ++i)
+		for (std::size_t i=0; i<xxx; ++i)
 			this->pixels[i] = pixels[i];
 	}
 
@@ -159,7 +159,7 @@ namespace graphics
 	void Sprite::setColour(int colour)
 	{
 		std::size_t xxx = width * height;
-		for (int i=0; i<xxx; ++i) pixels[i] = colour;
+		for (std::size_t i=0; i<xxx; ++i) pixels[i] = colour;
 	}
 
 	void Sprite::load()

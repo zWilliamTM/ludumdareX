@@ -5,9 +5,11 @@
 #include <SDL.h>
 #include <unordered_map>
 
+#include "input_listener.h"
+
 namespace input
 {
-	class Keyboard
+	class Keyboard : public InputListner
 	{
 	public:
 		Keyboard();

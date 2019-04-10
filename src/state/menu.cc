@@ -1,5 +1,6 @@
 #include "menu.h"
 #include "screen.h"
+#include "keyboard.h"
 
 using namespace graphics;
 namespace state
@@ -20,7 +21,7 @@ namespace state
 	{
 	}
 
-	void Menu::handleEvent(SDL_Keycode e)
+	void Menu::handleEvent(InputListener *il)
 	{
 	}
 

@@ -10,7 +10,7 @@ namespace helper
 {
 	int* _get_data_png(const char* path, int width, int height)
 	{
-		SDL_Surface *t = IMG_Load("sheet_test.png");
+		SDL_Surface *t = IMG_Load(path);
 		if (!t) throw std::runtime_error("Error load image: " + std::string(path));
 		SDL_Surface *img = SDL_ConvertSurfaceFormat(t, SDL_PIXELFORMAT_RGB888, 0);
 		SDL_FreeSurface(t);
@@ -20,5 +20,10 @@ namespace helper
 				buffer[x + y * width] = ((int*)img->pixels)[x + y * width];
 
 		return buffer;
+	}
+
+	void _reset_buffer(int **buffer, std::size_t size, int color)
+	{
+		for (std::size_t i=0; i<size; ++i) (*buffer)[i] = color;
 	}
 }

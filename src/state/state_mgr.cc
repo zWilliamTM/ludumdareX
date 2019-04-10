@@ -22,12 +22,14 @@ namespace state
 		delete current;
 	}
 
-	void StateManager::handleEvent(Keyboard *kb)
+	void StateManager::handleEvent(InputListener *il)
 	{
+		current->handleEvent(il);
 	}
 
 	void StateManager::update(float dt)
 	{
+		current->update(dt);
 	}
 
 	void StateManager::change(StateID state)

@@ -6,6 +6,7 @@
 
 #include "helper_sdl.h"
 
+#include <iostream>
 #include <stdexcept>
 #include <exception>
 
@@ -60,6 +61,7 @@ namespace graphics
 
 	SpriteSheet::SpriteSheet(const std::string& path, int width, int height)
 		: path(path)
+		, width(width), height(height)
 	{
 		SIZE = -1;
 		SPRITE_WIDTH = width;
@@ -97,6 +99,7 @@ namespace graphics
 	{
 		try
 		{
+			helper::_reset_buffer(&pixels, width * height);
 			int *buffer = helper::_get_data_png(path.c_str(), width, height);
 			for (int y=0; y<height; ++y)
 				for (int x=0; x<width; ++x)
@@ -105,6 +108,7 @@ namespace graphics
 		catch (std::exception& e)
 		{
 			// TODO.
+			std::cout << e.what() << std::endl;
 		}
 		
 	}

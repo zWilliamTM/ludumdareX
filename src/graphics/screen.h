@@ -4,6 +4,9 @@
 
 namespace graphics
 {
+	// Forward
+	class SpriteSheet;
+
 	class Screen
 	{
 	public:
@@ -14,6 +17,7 @@ namespace graphics
 
 		// renderable
 		void render(int const *spixels);
+		void render(SpriteSheet *sheet, int xp, int yp, bool fixed);
 		
 
 		// shape

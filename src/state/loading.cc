@@ -1,5 +1,6 @@
 #include "loading.h"
 #include "screen.h"
+#include "keyboard.h"
 
 using namespace graphics;
 namespace state
@@ -29,7 +30,7 @@ namespace state
 		}
 	}
 
-	void Loading::handleEvent(SDL_Keycode e)
+	void Loading::handleEvent(InputListener *il)
 	{
 	}
 

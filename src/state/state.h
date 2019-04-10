@@ -7,6 +7,7 @@
 // Forward
 namespace graphics { class Screen; }
 using namespace graphics;
+namespace input { class InputListener; }
 
 namespace state
 {
@@ -17,7 +18,7 @@ namespace state
 
 		virtual void release() = 0;
 		virtual void load() = 0;
-		virtual void handleEvent(SDL_Keycode e) = 0;
+		virtual void handleEvent(InputListener *il) = 0;
 		virtual void update(float) = 0;
 		virtual void render(Screen *screen) = 0;
 
