@@ -1,28 +1,56 @@
-CXX=g++
-CPPFLAGS=-std=c++17 -ofast -Wextra
+CXX 	:= g++
+CXXFLAGS:= -std=c++17 -ofast -Wextra
+#Folder
+BUILD	:= ./build
+APP_DIR	:= $(BUILD)/app
+OBJ_DIR	:= $(BUILD)/objects
+TARGET	:= ld
+SRC	:= $(wildcard src/*.cc) \
+	$(wildcard src/graphics/*.cc) \
+	$(wildcard src/input/*.cc) \
+	$(wildcard src/state/*.cc) \
+	$(wildcard src/utils/*.cc) \
+	$(wildcard src/event/*.cc) \
+	$(wildcard src/entity/*.cc) \
+	$(wildcard src/entity/mob/*cc)
 
-MAIN=src/*.cc \
-	 src/graphics/*.cc \
-	 src/input/*.cc \
-	 src/state/*.cc \
-	 src/utils/*.cc \
-	 src/event/*.cc
-
-INC= -I src \
+INCLUDE := -I src \
 	 -I src/graphics \
 	 -I src/input \
 	 -I src/state \
 	 -I src/utils \
-	 -I src/event
-
-PROJECT=ld
-
-CPPFLAGS += $(shell pkg-config --cflags sdl2)
+	 -I src/event \
+	 -I src/entity \
+	 -I src/mob/*.cc
+	 
+CXXFLAGS += $(shell pkg-config --cflags sdl2)
 LDLIBS	 += $(shell pkg-config --libs sdl2)
-LDLIBS 	 += -lSDL2_image
+LDLIBS	 += -lSDL2_image
 
-all: build
+OBJECTS := $(SRC:%.cc=$(OBJ_DIR)/%.o)
+
+all: build $(APP_DIR)/$(TARGET)
+
+$(OBJ_DIR)/%.o: %.cc
+	@mkdir -p $(@D)
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -o $@ -c $<
+
+$(APP_DIR)/$(TARGET): $(OBJECTS)
+	@mkdir -p $(@D)
+	$(CXX) $(CXXFLAGS) $(INCLUDE) $(LDLIBS) -o $(APP_DIR)/$(TARGET) $(OBJECTS)
+
+.PHONY: all build clean debug release
 
 build:
-	$(CXX) $(MAIN) $(CPPFLAGS) $(LDLIBS) $(INC) -o $(PROJECT) 
+	@mkdir -p $(APP_DIR)
+	@mkdir -p $(OBJ_DIR)
 
+debug: CXXFLAGS += -DDEBUG -g
+debug: all
+
+release: CXXFLAGS += -Ofast
+release: all
+
+clean:
+	-@rm -rvf $(OBJ_DIR)/*
+	-@rm -rvf $(APP_DIR)/*

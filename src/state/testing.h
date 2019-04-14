@@ -23,7 +23,7 @@ namespace state
 
 		void release();
 		void load();
-		void handleEvent(InputListener *il);
+		void handleEvent();
 		void update(float);
 		void render(Screen *screen);
 

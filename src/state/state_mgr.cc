@@ -2,9 +2,6 @@
 #include "screen.h"
 #include "keyboard.h"
 
-#include "loading.h"
-#include "menu.h"
-#include "game.h"
 #include "testing.h"
 
 using namespace graphics;
@@ -37,10 +34,6 @@ namespace state
 		if (current) if (curr_state != state) { release_state(current); delete current; };
 		switch (state)
 		{
-			case LOADING: { current = new Loading(); } break;
-			case MENU: { current = new Menu(); } break;
-			case GAME: { current = new Game(); } break;
-			case PAUSE: {} break;
 			case TESTING: { current = new Testing(); } break;
 		}
 		curr_state = state;

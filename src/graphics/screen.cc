@@ -49,6 +49,27 @@ namespace graphics
 		}
 	}
 
+	void Screen::render(Sprite *sprite, int xp, int yp, bool fixed)
+	{
+		if (fixed) { xp -= xOffset; yp -= yOffset; }
+
+		int w_s = sprite->SIZE;
+		int h_s = sprite->SIZE;
+		int *px = sprite->pixels;
+
+		for (int y=0; y<h_s; ++y)
+		{
+			int yo = yp + y;
+			if (yo < 0 || yo > height) continue;
+			for (int x=0; x<w_s; ++x)
+			{
+				int xo = xp + x;
+				if (xo < 0 || xo > width) continue;
+				pixels[xo + yo * width] = px[x + y * w_s];
+			}
+		}
+	}
+
 	void Screen::drawpoint(int x, int y, int color)
 	{
 		if (x < 0 || x > width || y < 0 || y > height) return;

@@ -18,7 +18,7 @@ namespace state
 
 		virtual void release() = 0;
 		virtual void load() = 0;
-		virtual void handleEvent(InputListener *il) = 0;
+		virtual void handleEvent() = 0;
 		virtual void update(float) = 0;
 		virtual void render(Screen *screen) = 0;
 

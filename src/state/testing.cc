@@ -25,18 +25,12 @@ namespace state
 		sheet = std::make_unique<SpriteSheet>("res/sheet_test.png", 64, 64);
 	}
 
-	void Testing::handleEvent(InputListener *il)
+	void Testing::handleEvent()
 	{
-		Keyboard *kb = dynamic_cast<Keyboard*>(il);
-		if (kb->left) dir_x = -1;
-		else if (kb->right) dir_x = 1;
 	}
 
 	void Testing::update(float dt)
 	{
-		if (dir_x < 0) --x;
-		else if (dir_x > 0) ++x;
-		dir_x = 0;
 	}
 
 	void Testing::render(Screen *screen)
