@@ -12,7 +12,8 @@ SRC	:= $(wildcard src/*.cc) \
 	$(wildcard src/utils/*.cc) \
 	$(wildcard src/event/*.cc) \
 	$(wildcard src/entity/*.cc) \
-	$(wildcard src/entity/mob/*cc)
+	$(wildcard src/entity/mob/*cc) \
+	$(wildcard src/level/*.cc)
 
 INCLUDE := -I src \
 	 -I src/graphics \
@@ -21,7 +22,9 @@ INCLUDE := -I src \
 	 -I src/utils \
 	 -I src/event \
 	 -I src/entity \
-	 -I src/mob/*.cc
+	 -I src/entity/mob \
+	 -I src/level
+
 	 
 CXXFLAGS += $(shell pkg-config --cflags sdl2)
 LDLIBS	 += $(shell pkg-config --libs sdl2)
